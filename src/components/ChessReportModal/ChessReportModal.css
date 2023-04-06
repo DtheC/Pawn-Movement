@@ -1,0 +1,40 @@
+.chess-report-modal-container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.chess-report-modal {
+  position: relative;
+  width: 100%;
+  max-width: 300px;
+  background-color: palevioletred;
+}
+
+.chess-report-modal-close {
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  width: 40px;
+  height: 40px;
+  background-color: white;
+  border-radius: 20px;
+}
+
+.chess-report-modal-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 200px;
+}
+
+.chess-report-modal-header {
+  flex: 0;
+}

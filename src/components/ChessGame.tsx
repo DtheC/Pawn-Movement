@@ -10,7 +10,8 @@ import { addCoordinates, generateBasicData } from "../helpers";
 import "./ChessGame.css";
 import ChessBoard from "./ChessBoard/ChessBoard";
 import ChessControls from "./ChessControls";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import ChessReportModal from "./ChessReportModal/ChessReportModal";
 
 export default function ChessGame() {
   const cellData = generateBasicData();
@@ -19,14 +20,14 @@ export default function ChessGame() {
     facing: DIR_NORTH,
   });
 
-  function calculateCanStepForward() {
-    const forward = addCoordinates(playerData.location, playerData.facing);
-    return (
-      forward.x >= 0 && forward.y >= 0 && forward.x > 8 - 1 && forward.y > 8 - 1
-    );
-  }
+  const [canStepForward, setCanStepForward] = useState(false);
+  const [showReportModal, setShowReportModal] = useState(false);
 
-  const [canStepForward, setCanStepForward] = useState<boolean>(calculateCanStepForward());
+  useEffect(() => {
+    const forward = addCoordinates(playerData.location, playerData.facing);
+    // TODO: remove 8 dependancy
+    setCanStepForward(forward.x >= 0 && forward.y >= 0 && forward.x < 8  && forward.y < 8 )
+  }, [playerData]);
 
   function handleRotateLeft() {
     let newDirection: Coordinate2D | undefined;
@@ -93,12 +94,19 @@ export default function ChessGame() {
     });
   }
 
-  function handleReportLocation() {}
+  function handleReportLocation() {
+    setShowReportModal(!showReportModal);
+  }
+
+  function closeModal() {
+    setShowReportModal(false)
+  }
 
   return (
     <div>
       <div className="chess-board">
         <ChessBoard cellData={cellData} playerData={playerData} />
+        {showReportModal && <ChessReportModal playerData={playerData} closeModal={closeModal} />}
       </div>
 
       <div className="chess-controls">
