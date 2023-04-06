@@ -1,35 +1,47 @@
 import {
-  DirNorth,
-  DirWest,
-  DirSouth,
-  DirEast,
-  PlayerDirection,
+  DIR_NORTH,
+  DIR_WEST,
+  DIR_SOUTH,
+  DIR_EAST,
+  Coordinate2D,
+  PlayerData,
 } from "./interfaces";
-import { generateBasicData } from "../helpers";
+import { addCoordinates, generateBasicData } from "../helpers";
 import "./ChessGame.css";
 import ChessBoard from "./ChessBoard/ChessBoard";
 import ChessControls from "./ChessControls";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 export default function ChessGame() {
-  const [cellData, setCellData] = useState(generateBasicData());
-  const [playerCoordinates, setPlayerCoordinates] = useState({ x: 0, y: 0 });
-  const [playerDirection, setPlayerDirection] = useState(DirNorth);
+  const cellData = generateBasicData();
+  const [playerData, setPlayerData] = useState<PlayerData>({
+    location: { x: 0, y: 0 },
+    facing: DIR_NORTH,
+  });
+
+  function calculateCanStepForward() {
+    const forward = addCoordinates(playerData.location, playerData.facing);
+    return (
+      forward.x >= 0 && forward.y >= 0 && forward.x > 8 - 1 && forward.y > 8 - 1
+    );
+  }
+
+  const [canStepForward, setCanStepForward] = useState<boolean>(calculateCanStepForward());
 
   function handleRotateLeft() {
-    let newDirection: PlayerDirection | undefined;
-    switch (playerDirection) {
-      case DirNorth:
-        newDirection = DirWest;
+    let newDirection: Coordinate2D | undefined;
+    switch (playerData.facing) {
+      case DIR_NORTH:
+        newDirection = DIR_WEST;
         break;
-      case DirWest:
-        newDirection = DirSouth;
+      case DIR_WEST:
+        newDirection = DIR_SOUTH;
         break;
-      case DirSouth:
-        newDirection = DirEast;
+      case DIR_SOUTH:
+        newDirection = DIR_EAST;
         break;
-      case DirEast:
-        newDirection = DirNorth;
+      case DIR_EAST:
+        newDirection = DIR_NORTH;
         break;
     }
     if (!newDirection) return;
@@ -37,56 +49,56 @@ export default function ChessGame() {
   }
 
   function handleRotateRight() {
-    let newDirection: PlayerDirection | undefined;
-    switch (playerDirection) {
-      case DirNorth:
-        newDirection = DirEast;
+    let newDirection: Coordinate2D | undefined;
+    switch (playerData.facing) {
+      case DIR_NORTH:
+        newDirection = DIR_EAST;
         break;
-      case DirEast:
-        newDirection = DirSouth;
+      case DIR_EAST:
+        newDirection = DIR_SOUTH;
         break;
-      case DirSouth:
-        newDirection = DirWest;
+      case DIR_SOUTH:
+        newDirection = DIR_WEST;
         break;
-      case DirWest:
-        newDirection = DirNorth;
+      case DIR_WEST:
+        newDirection = DIR_NORTH;
         break;
     }
     if (!newDirection) return;
     setDirection(newDirection);
   }
 
-  function setDirection(newDirection: PlayerDirection) {
-    setPlayerDirection(newDirection);
+  function setDirection(newDirection: Coordinate2D) {
+    console.log(newDirection);
+    setPlayerData({
+      ...playerData,
+      facing: newDirection,
+    });
   }
 
   function handleStepForward() {
-    setPlayerCoordinates({
-      x: playerCoordinates.x + playerDirection.x,
-      y: playerCoordinates.y + playerDirection.y,
+    // TODO: change min to length/height - 1
+    setPlayerData({
+      ...playerData,
+      location: {
+        x: Math.min(
+          8 - 1,
+          Math.max(0, playerData.location.x + playerData.facing.x)
+        ),
+        y: Math.min(
+          8 - 1,
+          Math.max(0, playerData.location.y + playerData.facing.y)
+        ),
+      },
     });
-    // TODO: Constrain to stop falling off edges
   }
 
   function handleReportLocation() {}
 
-  useEffect(() => {
-    const newCellData = cellData.map((col) =>
-      col.map((row) => {
-        return {
-          ...row,
-          active: false,
-        };
-      })
-    );
-    newCellData[playerCoordinates.y][playerCoordinates.x].active = true;
-    setCellData(newCellData);
-  }, [playerCoordinates, playerDirection]);
-
   return (
     <div>
       <div className="chess-board">
-        <ChessBoard cellData={cellData} playerDirection={playerDirection} />
+        <ChessBoard cellData={cellData} playerData={playerData} />
       </div>
 
       <div className="chess-controls">
@@ -95,6 +107,7 @@ export default function ChessGame() {
           handleRotateRight={handleRotateRight}
           handleStepForward={handleStepForward}
           handleReportLocation={handleReportLocation}
+          canStepForward={canStepForward}
         />
       </div>
     </div>

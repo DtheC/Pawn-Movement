@@ -1,15 +1,14 @@
-export interface ChessCellData {
-  x: number;
-  y: number;
-  active: boolean;
-}
-
-export interface PlayerDirection {
+export interface Coordinate2D {
   x: number;
   y: number;
 }
 
-export const DirNorth: PlayerDirection = { x: 0, y: -1 };
-export const DirSouth: PlayerDirection = { x: 0, y: 1 };
-export const DirEast: PlayerDirection = { x: 1, y: 0 };
-export const DirWest: PlayerDirection = { x: -1, y: 0 };
+export interface PlayerData {
+  location: Coordinate2D;
+  facing: Coordinate2D;
+}
+
+export const DIR_NORTH: Coordinate2D = { x: 0, y: -1 };
+export const DIR_SOUTH: Coordinate2D = { x: 0, y: 1 };
+export const DIR_EAST: Coordinate2D = { x: 1, y: 0 };
+export const DIR_WEST: Coordinate2D = { x: -1, y: 0 };

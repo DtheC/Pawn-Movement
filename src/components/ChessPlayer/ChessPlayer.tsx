@@ -1,43 +1,39 @@
-import { dir } from "console";
 import {
-  DirEast,
-  DirNorth,
-  DirSouth,
-  DirWest,
-  PlayerDirection,
+  Coordinate2D,
+  DIR_EAST,
+  DIR_NORTH,
+  DIR_SOUTH,
+  DIR_WEST,
+  PlayerData,
 } from "../interfaces";
 import "./ChessPlayer.css";
-import { useEffect, useState } from "react";
 
 export default function ChessPlayer({
-  direction,
+  playerData,
 }: {
-  direction: PlayerDirection;
+  playerData: PlayerData;
 }) {
-  const [rotationValue, setRotationValue] = useState(0);
+  const r = getRotationValue();
 
-  useEffect(() => {
-    switch (direction) {
-      case DirNorth:
-        setRotationValue(0);
-        break;
-      case DirEast:
-        setRotationValue(90);
-        break;
-      case DirSouth:
-        setRotationValue(180);
-        break;
-      case DirWest:
-        setRotationValue(-90);
-        break;
+  function getRotationValue() {
+    switch (playerData.facing) {
+      case DIR_NORTH:
+        return 0;
+      case DIR_EAST:
+        return 90;
+      case DIR_SOUTH:
+        return 180;
+      case DIR_WEST:
+      default:
+        return -90;
     }
-  }, [direction]);
+  }
 
   return (
     <div className="player-container">
       <div
         className="player-arrow-container"
-        style={{ transform: `rotate(${rotationValue}deg)` }}
+        style={{ transform: `rotate(${r}deg)` }}
       >
         <div className="player-arrow"> ^ </div>
       </div>

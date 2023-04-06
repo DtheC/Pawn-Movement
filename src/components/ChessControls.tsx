@@ -4,6 +4,7 @@ interface Props {
   handleRotateRight: () => void;
   handleStepForward: () => void;
   handleReportLocation: () => void;
+  canStepForward: boolean;
 }
 
 export default function ChessControls({
@@ -11,6 +12,7 @@ export default function ChessControls({
   handleRotateRight,
   handleStepForward,
   handleReportLocation,
+  canStepForward,
 }: Props) {
   return (
     <div className="controls-container">

@@ -1,16 +1,17 @@
 import ChessPlayer from "../ChessPlayer/ChessPlayer";
-import { ChessCellData, PlayerDirection } from "../interfaces";
+import { PlayerData } from "../interfaces";
 import "./ChessCell.css";
 
 export default function ChessCell({
-  chessCellData,
-  playerDirection
+  showPlayer,
+  playerData,
 }: {
-  chessCellData: ChessCellData; playerDirection: PlayerDirection
+  showPlayer: boolean;
+  playerData: PlayerData;
 }) {
   return (
-    <div className={`chess-game-cell ${chessCellData.active ? "active" : ""}`}>
-      {chessCellData.active && <ChessPlayer direction={playerDirection} />}
+    <div className={`chess-game-cell ${showPlayer ? "active" : ""}`}>
+      {showPlayer && <ChessPlayer playerData={playerData} />}
     </div>
   );
 }
