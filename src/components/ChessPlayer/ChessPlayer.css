@@ -1,6 +1,18 @@
 .player-container {
-  position: absolute;
-  width: 20px;
-  height: 20px;
+  position: relative;
+  width: 100%;
+  height: 100%;
   background-color: orange;
+}
+
+.player-arrow-container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.player-arrow {
+  width: 100%;
+  height: 20px;
+  background-color: palegoldenrod;
 }

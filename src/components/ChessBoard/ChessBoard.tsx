@@ -1,18 +1,22 @@
 import ChessPlayer from "../ChessPlayer/ChessPlayer";
-import { ChessCell } from "../interfaces";
+import { ChessCellData, PlayerDirection } from "../interfaces";
 import "./ChessBoard.css";
+import ChessCell from "./ChessCell";
 
-const ChessBoard = ({
+export default function ChessBoard({
   cellData,
+  playerDirection
 }: {
-  className: string;
-  cellData: ChessCell[][];
-}) => {
-  // TODO: remove hardcoding of 8
-  const gridColumns = "1fr ".repeat(8);
+  cellData: ChessCellData[][];
+  playerDirection: PlayerDirection
+}) {
+  // Set count of columns based on length of row
+  const gridColumns = "1fr ".repeat(cellData[0] ? cellData[0].length : 1);
 
   const cells = cellData.map((col, colIndex) =>
-    col.map((row, rowIndex) => <div className={`chess-game-cell`}></div>)
+    col.map((rowCell, rowIndex) => (
+      <ChessCell key={`${colIndex}-${rowIndex}`} chessCellData={rowCell} playerDirection={playerDirection} />
+    ))
   );
 
   return (
@@ -21,10 +25,6 @@ const ChessBoard = ({
       style={{ gridTemplateColumns: gridColumns }}
     >
       {cells}
-
-      <ChessPlayer />
     </div>
   );
-};
-
-export default ChessBoard;
+}

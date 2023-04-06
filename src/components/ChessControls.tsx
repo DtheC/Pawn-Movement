@@ -1,12 +1,23 @@
-const ChessControls = () => {
+
+interface Props {
+  handleRotateLeft: () => void;
+  handleRotateRight: () => void;
+  handleStepForward: () => void;
+  handleReportLocation: () => void;
+}
+
+export default function ChessControls({
+  handleRotateLeft,
+  handleRotateRight,
+  handleStepForward,
+  handleReportLocation,
+}: Props) {
   return (
     <div className="controls-container">
-      <button>Rotate Left</button>
-      <button>Rotate Right</button>
-      <button>Step Forward</button>
-      <button>Report Location</button>
+      <button onClick={handleRotateLeft}>Rotate Left</button>
+      <button onClick={handleRotateRight}>Rotate Right</button>
+      <button onClick={handleStepForward}>Step Forward</button>
+      <button onClick={handleReportLocation}>Report Location</button>
     </div>
   );
-};
-
-export default ChessControls;
+}
