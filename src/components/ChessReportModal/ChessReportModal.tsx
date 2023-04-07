@@ -8,10 +8,10 @@ export default function ChessReportModal({
 }: {
   closeModal: () => void;
 }) {
-  const { location, facing } = usePlayerContext();
+  const { playerLocation, playerFacing } = usePlayerContext();
 
   function getReportText() {
-    return `${location.x + 1}:${location.y + 1}:${facingToPlainText(facing)}`;
+    return `${playerLocation.x + 1}:${playerLocation.y + 1}:${facingToPlainText(playerFacing)}`;
   }
 
   function facingToPlainText(dir: Coordinate2D) {

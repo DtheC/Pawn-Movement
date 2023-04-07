@@ -4,11 +4,11 @@ import ChessIcon from "../ChessIcon/ChessIcon";
 import "./ChessPlayer.css";
 
 export default function ChessPlayer() {
-  const { facing } = usePlayerContext();
-  const r = getRotationValue();
+  const { playerFacing } = usePlayerContext();
+  const containerRotation = getRotationValue();
 
   function getRotationValue() {
-    switch (facing) {
+    switch (playerFacing) {
       case DIR_NORTH:
         return 0;
       case DIR_EAST:
@@ -28,7 +28,7 @@ export default function ChessPlayer() {
       </div>
       <div
         className="player-arrow-container"
-        style={{ transform: `rotate(${r}deg)` }}
+        style={{ transform: `rotate(${containerRotation}deg)` }}
       >
         <div className="player-arrow"> ^ </div>
       </div>

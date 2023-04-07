@@ -12,46 +12,44 @@ import { DIR_NORTH, DIR_WEST, DIR_SOUTH, DIR_EAST, BOARD_WIDTH, BOARD_HEIGHT } f
 const PlayerContext = createContext({} as PlayerContextData);
 
 interface PlayerContextData {
-  location: Coordinate2D;
-  facing: Coordinate2D;
-  setLocation: (val: Coordinate2D) => void;
-  setFacing: (val: Coordinate2D) => void;
-  canStepForward: boolean;
-  setCanStepForward: (val: boolean) => void;
-  handleRotateLeft: () => void,
-  handleRotateRight: () => void,
-  handleStepForward: () => void,
-  setDirection: (val: Coordinate2D) => void,
+  playerLocation: Coordinate2D;
+  setPlayerLocation: (val: Coordinate2D) => void;
+  playerFacing: Coordinate2D;
+  setPlayerFacing: (val: Coordinate2D) => void;
+  playerCanStepForward: boolean;
+  setPlayerCanStepForward: (val: boolean) => void;
+  playerTurnLeft: () => void,
+  playerTurnRight: () => void,
+  playerMove: () => void,
 }
 
 export function PlayerContextWrapper({ children }: PropsWithChildren) {
-  const [location, setLocation] = useState({ x: 0, y: 0 });
-  const [facing, setFacing] = useState(DIR_NORTH);
-  const [canStepForward, setCanStepForward] = useState(false);
+  const [playerLocation, setPlayerLocation] = useState({ x: 0, y: 0 });
+  const [playerFacing, setPlayerFacing] = useState(DIR_NORTH);
+  const [playerCanStepForward, setPlayerCanStepForward] = useState(false);
 
   const playerState: PlayerContextData = {
-    location,
-    facing,
-    setLocation,
-    setFacing,
-    canStepForward,
-    setCanStepForward,
-    handleRotateLeft,
-    handleRotateRight,
-    handleStepForward,
-    setDirection,
+    playerLocation,
+    playerFacing,
+    setPlayerLocation,
+    setPlayerFacing,
+    playerCanStepForward,
+    setPlayerCanStepForward,
+    playerTurnLeft: turnLeft,
+    playerTurnRight: turnRight,
+    playerMove,
   };
 
   useEffect(() => {
-    const forward = addCoordinates(location, facing);
-    setCanStepForward(
+    const forward = addCoordinates(playerLocation, playerFacing);
+    setPlayerCanStepForward(
       forward.x >= 0 && forward.y >= 0 && forward.x < BOARD_WIDTH && forward.y < BOARD_HEIGHT
     );
-  }, [location, facing]);
+  }, [playerLocation, playerFacing]);
 
-  function handleRotateLeft() {
+  function turnLeft() {
     let newDirection: Coordinate2D | undefined;
-    switch (facing) {
+    switch (playerFacing) {
       case DIR_NORTH:
         newDirection = DIR_WEST;
         break;
@@ -69,9 +67,9 @@ export function PlayerContextWrapper({ children }: PropsWithChildren) {
     setDirection(newDirection);
   }
 
-  function handleRotateRight() {
+  function turnRight() {
     let newDirection: Coordinate2D | undefined;
-    switch (facing) {
+    switch (playerFacing) {
       case DIR_NORTH:
         newDirection = DIR_EAST;
         break;
@@ -90,13 +88,13 @@ export function PlayerContextWrapper({ children }: PropsWithChildren) {
   }
 
   function setDirection(newDirection: Coordinate2D) {
-    setFacing(newDirection);
+    setPlayerFacing(newDirection);
   }
 
-  function handleStepForward() {
-    setLocation({
-      x: Math.min(BOARD_WIDTH - 1, Math.max(0, location.x + facing.x)),
-      y: Math.min(BOARD_HEIGHT - 1, Math.max(0, location.y + facing.y)),
+  function playerMove() {
+    setPlayerLocation({
+      x: Math.min(BOARD_WIDTH - 1, Math.max(0, playerLocation.x + playerFacing.x)),
+      y: Math.min(BOARD_HEIGHT - 1, Math.max(0, playerLocation.y + playerFacing.y)),
     });
   }
 

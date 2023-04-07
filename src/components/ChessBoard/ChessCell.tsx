@@ -8,9 +8,9 @@ export default function ChessCell({
 }: {
   cellPosition: Coordinate2D;
 }) {
-  const { location } = usePlayerContext();
+  const { playerLocation } = usePlayerContext();
   const containsPlayer =
-    cellPosition.x === location.x && cellPosition.y === location.y;
+    cellPosition.x === playerLocation.x && cellPosition.y === playerLocation.y;
 
   // If we're on an even row then colour even squares, otherwise colour odd
   const isAltColor =

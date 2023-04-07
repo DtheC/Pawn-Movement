@@ -10,7 +10,7 @@ export default function ChessGame() {
 
   const [showReportModal, setShowReportModal] = useState(false);
 
-  function handleReportLocation() {
+  function handleReportPositionAndDirection() {
     setShowReportModal(!showReportModal);
   }
 
@@ -29,7 +29,7 @@ export default function ChessGame() {
 
       <div className="chess-controls">
         <ChessControls
-          handleReportLocation={handleReportLocation}
+          handleReportLocation={handleReportPositionAndDirection}
         />
       </div>
     </div>

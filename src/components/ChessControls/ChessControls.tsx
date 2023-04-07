@@ -9,26 +9,26 @@ interface Props {
 
 export default function ChessControls({ handleReportLocation }: Props) {
   const {
-    canStepForward,
-    handleRotateLeft,
-    handleRotateRight,
-    handleStepForward,
+    playerCanStepForward,
+    playerTurnLeft,
+    playerTurnRight,
+    playerMove,
   } = usePlayerContext();
   return (
     <div className="controls-container">
       <div className="controls-container-inner">
-        <ChessControlButton handleOnClick={handleRotateLeft}>
+        <ChessControlButton handleOnClick={playerTurnLeft}>
           <ChessIcon name="rotate-left" alt='Rotate Left' />
         </ChessControlButton>
 
         <ChessControlButton
-          handleOnClick={handleStepForward}
-          disabled={!canStepForward}
+          handleOnClick={playerMove}
+          disabled={!playerCanStepForward}
         >
           <ChessIcon name="arrow" alt='Step Forward' />
         </ChessControlButton>
 
-        <ChessControlButton handleOnClick={handleRotateRight}>
+        <ChessControlButton handleOnClick={playerTurnRight}>
           <ChessIcon name="rotate-right" alt='Rotate Right' />
         </ChessControlButton>
 
