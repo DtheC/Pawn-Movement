@@ -1,0 +1,14 @@
+.chess-control-button {
+  width: 75px;
+  height: 75px;
+  border-radius: 10px;
+}
+
+.chess-control-button:hover {
+ background-color: lightgray;
+}
+
+.chess-control-button[disabled] {
+  cursor: not-allowed;
+  background-color: red;
+ }

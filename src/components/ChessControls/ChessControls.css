@@ -1,0 +1,11 @@
+.controls-container {
+  display: flex;
+  justify-content: space-around;
+}
+
+.controls-container-inner {
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+  max-width: 500px;
+}

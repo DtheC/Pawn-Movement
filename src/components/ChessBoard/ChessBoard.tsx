@@ -21,7 +21,7 @@ export default function ChessBoard({
 
   return (
     <div
-      className={"chess-game-container"}
+      className={"chess-board-container"}
       style={{ gridTemplateColumns: gridColumnsStyle }}
     >
       {cells}

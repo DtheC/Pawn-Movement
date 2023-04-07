@@ -19,7 +19,7 @@ export default function ChessGame() {
   }
 
   return (
-    <div>
+    <div className="chess-game-container">
       <div className="chess-board">
         <ChessBoard cellData={cellData} />
         {showReportModal && (

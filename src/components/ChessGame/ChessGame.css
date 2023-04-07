@@ -1,6 +1,21 @@
+.chess-game-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 
 .chess-board {
   position: relative;
   max-width: 600px;
   margin: 10px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.chess-controls {
+  width: 100%;
+  max-width: 500px;
 }
