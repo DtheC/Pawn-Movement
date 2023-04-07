@@ -2,17 +2,29 @@
   position: relative;
   width: 100%;
   height: 100%;
-  background-color: orange;
 }
 
 .player-arrow-container {
   position: absolute;
   width: 100%;
   height: 100%;
+  top: 0;
+  left: 0;
 }
 
 .player-arrow {
+  text-align: center;
   width: 100%;
   height: 20px;
-  background-color: palegoldenrod;
+  font-size: 2em;
+  line-height: .8em;
+  color: white;
+  font-weight: 900;
+}
+
+.pawn-container {
+  width: 90%;
+  height: 90%;
+  padding-left: 5%;
+  padding-top: 5%;
 }

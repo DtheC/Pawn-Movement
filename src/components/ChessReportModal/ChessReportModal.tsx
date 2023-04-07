@@ -1,8 +1,6 @@
 import { DIR_NORTH, DIR_WEST, DIR_SOUTH, DIR_EAST } from "../../constants";
 import { usePlayerContext } from "../../context/PlayerContext";
-import {
-  Coordinate2D,
-} from "../interfaces";
+import { Coordinate2D } from "../interfaces";
 import "./ChessReportModal.css";
 
 export default function ChessReportModal({
@@ -32,8 +30,7 @@ export default function ChessReportModal({
     <div className="chess-report-modal-container" onClick={closeModal}>
       <div className="chess-report-modal" onClick={(e) => e.stopPropagation()}>
         <div className="chess-report-modal-close" onClick={closeModal}>
-          {" "}
-          X{" "}
+          <span>X</span>
         </div>
         <div className="chess-report-modal-body">
           <h1 className="chess-report-modal-header">Current Location</h1>

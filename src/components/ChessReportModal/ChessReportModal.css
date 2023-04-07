@@ -3,11 +3,9 @@
   width: 100%;
   height: 100%;
   top: 0;
-
   display: flex;
   align-items: center;
   justify-content: center;
-
   background-color: rgba(0, 0, 0, 0.5);
 }
 
@@ -15,26 +13,42 @@
   position: relative;
   width: 100%;
   max-width: 300px;
-  background-color: palevioletred;
+  background-color: var(--chess-primary);
+  border: 2px var(--chess-secondary) solid;
+  border-radius: 10px;
 }
 
 .chess-report-modal-close {
   position: absolute;
-  top: -10px;
-  left: -10px;
+  top: -20px;
+  left: -20px;
   width: 40px;
   height: 40px;
-  background-color: white;
+  background-color: var(--chess-primary);
+  border: 2px var(--chess-secondary) solid;
   border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 700;
+  font-size: 2em;
 }
 
 .chess-report-modal-body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  min-height: 200px;
+  min-height: 100px;
 }
 
 .chess-report-modal-header {
-  flex: 0;
+  margin: 10px;
+  text-transform: uppercase;
+  font-size: 1.5em;
+  color: var(--chess-secondary);
+  text-decoration: underline;
+}
+
+.chess-report-modal-text {
+  font-size: 1.5em;
 }

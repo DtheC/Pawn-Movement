@@ -1,5 +1,6 @@
 import { DIR_EAST, DIR_NORTH, DIR_SOUTH, DIR_WEST } from "../../constants";
 import { usePlayerContext } from "../../context/PlayerContext";
+import ChessIcon from "../ChessIcon/ChessIcon";
 import "./ChessPlayer.css";
 
 export default function ChessPlayer() {
@@ -22,6 +23,9 @@ export default function ChessPlayer() {
 
   return (
     <div className="player-container">
+      <div className="pawn-container">
+        <ChessIcon name="pawn" />
+      </div>
       <div
         className="player-arrow-container"
         style={{ transform: `rotate(${r}deg)` }}

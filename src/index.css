@@ -1,4 +1,10 @@
 
+:root {
+  --chess-primary: #f6f1e6;
+  --chess-secondary: #517e74;
+  --chess-active: rgba(0, 0, 0, 0.5);
+}
+
 body {
   margin: 0;
   padding: 0;

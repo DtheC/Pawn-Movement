@@ -2,13 +2,14 @@
   width: 75px;
   height: 75px;
   border-radius: 10px;
+  background-color: var(--chess-primary);
 }
 
 .chess-control-button:hover {
- background-color: lightgray;
+ background-color: var(--chess-secondary);
 }
 
 .chess-control-button[disabled] {
   cursor: not-allowed;
-  background-color: red;
+  background-color: var(--chess-active)
  }

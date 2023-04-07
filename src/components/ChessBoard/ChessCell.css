@@ -3,15 +3,15 @@
   aspect-ratio: 1;
 
   box-sizing: border-box;
-  border: 1px solid black;
+  border: 1px solid rgba(0, 0, 0, 0.5);
 
-  background-color: white;
+  background-color: var(--chess-primary)
 }
 
 .chess-game-cell.dark {
-  background-color: black;
+  background-color: var(--chess-secondary);
 }
 
 .chess-game-cell.active {
-  background-color: teal;
+  background-color: var(--chess-active);
 }
