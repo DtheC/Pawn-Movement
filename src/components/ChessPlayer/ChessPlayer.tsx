@@ -1,22 +1,18 @@
+import { usePlayerContext } from "../../context/PlayerContext";
 import {
-  Coordinate2D,
   DIR_EAST,
   DIR_NORTH,
   DIR_SOUTH,
   DIR_WEST,
-  PlayerData,
 } from "../interfaces";
 import "./ChessPlayer.css";
 
-export default function ChessPlayer({
-  playerData,
-}: {
-  playerData: PlayerData;
-}) {
+export default function ChessPlayer() {
+  const { facing } = usePlayerContext();
   const r = getRotationValue();
 
   function getRotationValue() {
-    switch (playerData.facing) {
+    switch (facing) {
       case DIR_NORTH:
         return 0;
       case DIR_EAST:

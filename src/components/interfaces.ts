@@ -3,11 +3,6 @@ export interface Coordinate2D {
   y: number;
 }
 
-export interface PlayerData {
-  location: Coordinate2D;
-  facing: Coordinate2D;
-}
-
 export const DIR_NORTH: Coordinate2D = { x: 0, y: -1 };
 export const DIR_SOUTH: Coordinate2D = { x: 0, y: 1 };
 export const DIR_EAST: Coordinate2D = { x: 1, y: 0 };

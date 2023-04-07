@@ -1,24 +1,22 @@
+import { usePlayerContext } from "../../context/PlayerContext";
 import {
   Coordinate2D,
   DIR_EAST,
   DIR_NORTH,
   DIR_SOUTH,
   DIR_WEST,
-  PlayerData,
 } from "../interfaces";
 import "./ChessReportModal.css";
 
 export default function ChessReportModal({
-  playerData,
   closeModal,
 }: {
-  playerData: PlayerData;
   closeModal: () => void;
 }) {
+  const { location, facing } = usePlayerContext();
+
   function getReportText() {
-    return `${playerData.location.x + 1}:${
-      playerData.location.y + 1
-    }:${facingToPlainText(playerData.facing)}`;
+    return `${location.x + 1}:${location.y + 1}:${facingToPlainText(facing)}`;
   }
 
   function facingToPlainText(dir: Coordinate2D) {
@@ -28,17 +26,20 @@ export default function ChessReportModal({
       case DIR_WEST:
         return "left";
       case DIR_SOUTH:
-        return "right";
-      case DIR_EAST:
         return "bottom";
+      case DIR_EAST:
+        return "right";
     }
   }
   return (
     <div className="chess-report-modal-container" onClick={closeModal}>
       <div className="chess-report-modal" onClick={(e) => e.stopPropagation()}>
-        <div className="chess-report-modal-close" onClick={closeModal}> X </div>
+        <div className="chess-report-modal-close" onClick={closeModal}>
+          {" "}
+          X{" "}
+        </div>
         <div className="chess-report-modal-body">
-        <h1 className="chess-report-modal-header">Current Location</h1>
+          <h1 className="chess-report-modal-header">Current Location</h1>
           <div className="chess-report-modal-text">{getReportText()}</div>
         </div>
       </div>

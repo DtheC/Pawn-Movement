@@ -1,6 +1,6 @@
 import { usePlayerContext } from "../../context/PlayerContext";
 import ChessPlayer from "../ChessPlayer/ChessPlayer";
-import { Coordinate2D, PlayerData } from "../interfaces";
+import { Coordinate2D } from "../interfaces";
 import "./ChessCell.css";
 
 export default function ChessCell({
@@ -8,13 +8,13 @@ export default function ChessCell({
 }: {
   cellPosition: Coordinate2D;
 }) {
-  const { playerData } = usePlayerContext();
+  const { location } = usePlayerContext();
   const containsPlayer =
-    cellPosition.x === playerData.location.x &&
-    cellPosition.y === playerData.location.y;
+    cellPosition.x === location.x &&
+    cellPosition.y === location.y;
   return (
     <div className={`chess-game-cell ${containsPlayer ? "active" : ""}`}>
-      {containsPlayer && <ChessPlayer playerData={playerData} />}
+      {containsPlayer && <ChessPlayer />}
     </div>
   );
 }

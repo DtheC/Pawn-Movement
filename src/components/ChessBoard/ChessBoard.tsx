@@ -1,4 +1,4 @@
-import { Coordinate2D, PlayerData } from "../interfaces";
+import { Coordinate2D } from "../interfaces";
 import "./ChessBoard.css";
 import ChessCell from "./ChessCell";
 
