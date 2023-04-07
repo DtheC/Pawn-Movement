@@ -4,10 +4,8 @@ import ChessCell from "./ChessCell";
 
 export default function ChessBoard({
   cellData,
-  playerData,
 }: {
   cellData: Coordinate2D[][];
-  playerData: PlayerData,
 }) {
   // Set count of columns based on length of row
   const gridColumnsStyle = "1fr ".repeat(cellData[0] ? cellData[0].length : 1);
@@ -16,10 +14,7 @@ export default function ChessBoard({
     col.map((rowCell, rowIndex) => (
       <ChessCell
         key={`${colIndex}-${rowIndex}`}
-        showPlayer={
-          rowCell.x === playerData.location.x && rowCell.y === playerData.location.y
-        }
-        playerData={playerData}
+        cellPosition={rowCell}
       />
     ))
   );

@@ -4,21 +4,18 @@ import {
   DIR_SOUTH,
   DIR_EAST,
   Coordinate2D,
-  PlayerData,
-} from "./interfaces";
-import { addCoordinates, generateBasicData } from "../helpers";
+} from "../interfaces";
+import { addCoordinates, generateBasicData } from "../../helpers";
 import "./ChessGame.css";
-import ChessBoard from "./ChessBoard/ChessBoard";
-import ChessControls from "./ChessControls";
+import ChessBoard from "../ChessBoard/ChessBoard";
+import ChessControls from "../ChessControls/ChessControls";
 import { useEffect, useState } from "react";
-import ChessReportModal from "./ChessReportModal/ChessReportModal";
+import ChessReportModal from "../ChessReportModal/ChessReportModal";
+import { usePlayerContext } from "../../context/PlayerContext";
 
 export default function ChessGame() {
   const cellData = generateBasicData();
-  const [playerData, setPlayerData] = useState<PlayerData>({
-    location: { x: 0, y: 0 },
-    facing: DIR_NORTH,
-  });
+  const { playerData, playerFunctions } = usePlayerContext();
 
   const [canStepForward, setCanStepForward] = useState(false);
   const [showReportModal, setShowReportModal] = useState(false);
@@ -26,7 +23,9 @@ export default function ChessGame() {
   useEffect(() => {
     const forward = addCoordinates(playerData.location, playerData.facing);
     // TODO: remove 8 dependancy
-    setCanStepForward(forward.x >= 0 && forward.y >= 0 && forward.x < 8  && forward.y < 8 )
+    setCanStepForward(
+      forward.x >= 0 && forward.y >= 0 && forward.x < 8 && forward.y < 8
+    );
   }, [playerData]);
 
   function handleRotateLeft() {
@@ -70,27 +69,20 @@ export default function ChessGame() {
   }
 
   function setDirection(newDirection: Coordinate2D) {
-    console.log(newDirection);
-    setPlayerData({
-      ...playerData,
-      facing: newDirection,
-    });
+    playerFunctions.setFacing(newDirection);
   }
 
   function handleStepForward() {
     // TODO: change min to length/height - 1
-    setPlayerData({
-      ...playerData,
-      location: {
-        x: Math.min(
-          8 - 1,
-          Math.max(0, playerData.location.x + playerData.facing.x)
-        ),
-        y: Math.min(
-          8 - 1,
-          Math.max(0, playerData.location.y + playerData.facing.y)
-        ),
-      },
+    playerFunctions.setLocation({
+      x: Math.min(
+        8 - 1,
+        Math.max(0, playerData.location.x + playerData.facing.x)
+      ),
+      y: Math.min(
+        8 - 1,
+        Math.max(0, playerData.location.y + playerData.facing.y)
+      ),
     });
   }
 
@@ -99,14 +91,16 @@ export default function ChessGame() {
   }
 
   function closeModal() {
-    setShowReportModal(false)
+    setShowReportModal(false);
   }
 
   return (
     <div>
       <div className="chess-board">
-        <ChessBoard cellData={cellData} playerData={playerData} />
-        {showReportModal && <ChessReportModal playerData={playerData} closeModal={closeModal} />}
+        <ChessBoard cellData={cellData} />
+        {showReportModal && (
+          <ChessReportModal playerData={playerData} closeModal={closeModal} />
+        )}
       </div>
 
       <div className="chess-controls">

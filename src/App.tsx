@@ -1,10 +1,13 @@
-import './App.css';
-import ChessGame from './components/ChessGame';
+import "./App.css";
+import ChessGame from "./components/ChessGame/ChessGame";
+import { PlayerContextWrapper } from "./context/PlayerContext";
 
 function App() {
   return (
     <div className="App">
-      <ChessGame />
+      <PlayerContextWrapper>
+        <ChessGame />
+      </PlayerContextWrapper>
     </div>
   );
 }
