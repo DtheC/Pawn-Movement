@@ -1,15 +1,14 @@
 import { Coordinate2D } from "./components/interfaces";
+import { BOARD_HEIGHT, BOARD_WIDTH } from "./constants";
 
 export function generateBasicData() {
   const data: Coordinate2D[][] = [];
   // each top level row is a column in the y axis
   // each array inside is a line in the x cartesian plane
   // e.g. data[0][2] is x: 2, y: 0
-
-  // TODO: Move these 8 values to separate file so not hardcoded
-  for (let y = 0; y < 8; y++) {
+  for (let y = 0; y < BOARD_HEIGHT; y++) {
     const row = [];
-    for (let x = 0; x < 8; x++) {
+    for (let x = 0; x < BOARD_WIDTH; x++) {
       row.push({ x, y, active: y === 0 && x === 0 });
     }
     data.push(row);

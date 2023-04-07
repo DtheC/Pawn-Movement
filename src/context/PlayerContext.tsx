@@ -7,7 +7,7 @@ import {
 } from "react";
 import { Coordinate2D } from "../components/interfaces";
 import { addCoordinates } from "../helpers";
-import { DIR_NORTH, DIR_WEST, DIR_SOUTH, DIR_EAST } from "../constants";
+import { DIR_NORTH, DIR_WEST, DIR_SOUTH, DIR_EAST, BOARD_WIDTH, BOARD_HEIGHT } from "../constants";
 
 const PlayerContext = createContext({} as PlayerContextData);
 
@@ -44,9 +44,8 @@ export function PlayerContextWrapper({ children }: PropsWithChildren) {
 
   useEffect(() => {
     const forward = addCoordinates(location, facing);
-    // TODO: remove 8 dependancy
     setCanStepForward(
-      forward.x >= 0 && forward.y >= 0 && forward.x < 8 && forward.y < 8
+      forward.x >= 0 && forward.y >= 0 && forward.x < BOARD_WIDTH && forward.y < BOARD_HEIGHT
     );
   }, [location, facing]);
 
@@ -95,10 +94,9 @@ export function PlayerContextWrapper({ children }: PropsWithChildren) {
   }
 
   function handleStepForward() {
-    // TODO: change min to length/height - 1
     setLocation({
-      x: Math.min(8 - 1, Math.max(0, location.x + facing.x)),
-      y: Math.min(8 - 1, Math.max(0, location.y + facing.y)),
+      x: Math.min(BOARD_WIDTH - 1, Math.max(0, location.x + facing.x)),
+      y: Math.min(BOARD_HEIGHT - 1, Math.max(0, location.y + facing.y)),
     });
   }
 
