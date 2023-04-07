@@ -5,8 +5,9 @@ import {
   useEffect,
   useState,
 } from "react";
-import { Coordinate2D, DIR_EAST, DIR_NORTH, DIR_SOUTH, DIR_WEST } from "../components/interfaces";
+import { Coordinate2D } from "../components/interfaces";
 import { addCoordinates } from "../helpers";
+import { DIR_NORTH, DIR_WEST, DIR_SOUTH, DIR_EAST } from "../constants";
 
 const PlayerContext = createContext({} as PlayerContextData);
 

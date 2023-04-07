@@ -1,10 +1,5 @@
+import { DIR_EAST, DIR_NORTH, DIR_SOUTH, DIR_WEST } from "../../constants";
 import { usePlayerContext } from "../../context/PlayerContext";
-import {
-  DIR_EAST,
-  DIR_NORTH,
-  DIR_SOUTH,
-  DIR_WEST,
-} from "../interfaces";
 import "./ChessPlayer.css";
 
 export default function ChessPlayer() {

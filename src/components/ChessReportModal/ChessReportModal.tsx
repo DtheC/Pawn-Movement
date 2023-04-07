@@ -1,10 +1,7 @@
+import { DIR_NORTH, DIR_WEST, DIR_SOUTH, DIR_EAST } from "../../constants";
 import { usePlayerContext } from "../../context/PlayerContext";
 import {
   Coordinate2D,
-  DIR_EAST,
-  DIR_NORTH,
-  DIR_SOUTH,
-  DIR_WEST,
 } from "../interfaces";
 import "./ChessReportModal.css";
 
