@@ -1,10 +1,15 @@
 .chess-game-cell {
   width: 100%;
+  height: auto;
   aspect-ratio: 1;
+
+  /* We display: flex and clear overflow to fix visual issue due to how safari deals with content in grids */
+  display: flex;
+  overflow-x: hidden;
+  overflow-y: hidden;
 
   box-sizing: border-box;
   border: 1px solid rgba(0, 0, 0, 0.5);
-
   background-color: var(--chess-primary)
 }
 
