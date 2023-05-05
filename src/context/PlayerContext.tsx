@@ -30,8 +30,8 @@ export function PlayerContextWrapper({ children }: PropsWithChildren) {
 
   const playerState: PlayerContextData = {
     playerLocation,
-    playerFacing,
     setPlayerLocation,
+    playerFacing,
     setPlayerFacing,
     playerCanStepForward,
     setPlayerCanStepForward,
