@@ -13,11 +13,8 @@ const PlayerContext = createContext({} as PlayerContextData);
 
 interface PlayerContextData {
   playerLocation: Coordinate2D;
-  setPlayerLocation: (val: Coordinate2D) => void;
   playerFacing: Coordinate2D;
-  setPlayerFacing: (val: Coordinate2D) => void;
   playerCanStepForward: boolean;
-  setPlayerCanStepForward: (val: boolean) => void;
   playerTurnLeft: () => void,
   playerTurnRight: () => void,
   playerMove: () => void,
@@ -31,10 +28,7 @@ export function PlayerContextWrapper({ children }: PropsWithChildren) {
   const playerState: PlayerContextData = {
     playerLocation,
     playerFacing,
-    setPlayerLocation,
-    setPlayerFacing,
     playerCanStepForward,
-    setPlayerCanStepForward,
     playerTurnLeft: turnLeft,
     playerTurnRight: turnRight,
     playerMove,
