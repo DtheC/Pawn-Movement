@@ -11,11 +11,8 @@ import { DIR_NORTH } from "../constants";
 const TestComponent = () => {
   const {
     playerLocation,
-    setPlayerLocation,
     playerFacing,
-    setPlayerFacing,
     playerCanStepForward,
-    setPlayerCanStepForward,
     playerTurnLeft,
     playerTurnRight,
     playerMove,
@@ -180,4 +177,3 @@ test("player can not step out of right edge", () => {
   while(canMove.checked) fireEvent.click(movePlayerButton);
   expect(canMove.checked).toBe(false);
 });
-
